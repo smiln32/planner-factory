@@ -39,6 +39,14 @@ class PlannerFactoryTests(unittest.TestCase):
         self.assertTrue(html.startswith("<!doctype html>"))
         self.assertGreater(len(html), 1000)
 
+    def test_starter_spec_is_valid_and_topic_aware(self):
+        spec = planner_factory.starter_spec("Morning Routine")
+        self.assertEqual(planner_factory.validate(spec), [])
+        self.assertIn("Morning Routine", spec["set_title"])
+        self.assertEqual(len(spec["pages"]), 1)
+
+    def test_version_is_semantic(self):
+        self.assertRegex(planner_factory.VERSION, r"^\d+\.\d+\.\d+$")
 
 if __name__ == "__main__":
     unittest.main()

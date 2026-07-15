@@ -26,6 +26,18 @@ The project combines a consistent visual system with guidance for writing suppor
 
 No third-party Python packages are required.
 
+Create a topic-aware starter specification:
+
+```bash
+python planner_factory.py --init my-planner.json --topic "Morning Routine"
+```
+
+Show the installed version:
+
+```bash
+python planner_factory.py --version
+```
+
 ## Quick start
 
 1. Clone or download this repository.
@@ -95,7 +107,7 @@ Every page should:
 - Move gently from noticing toward a choice, support, or feasible next step
 - Remain legible and editable after Canva import
 
-The full visual requirements are documented in [`DESIGN_STANDARD.md`](DESIGN_STANDARD.md).
+The full JSON format is documented in [`SPECIFICATION.md`](SPECIFICATION.md). Visual requirements are documented in [`DESIGN_STANDARD.md`](DESIGN_STANDARD.md).
 
 ## Using the project with an AI assistant
 
@@ -126,6 +138,7 @@ Canva import behavior may change over time, so always test the actual imported d
 ```text
 planner_factory.py             HTML generator and validator
 planner_spec_template.json     Reusable planner specification template
+SPECIFICATION.md               Complete JSON field and content-type reference
 CONTENT_GUIDE.md               Prompt, safety, and uniqueness guidance
 DESIGN_STANDARD.md             Typography, spacing, color, and layout rules
 NEW_CHAT_STARTER_PROMPT.md      Reusable AI-assisted creation workflow

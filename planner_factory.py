@@ -25,6 +25,7 @@ HEADER_H = 66
 FOOTER_BOTTOM = 10
 SAFE_BOTTOM = 1030
 FILL_TARGET = 980
+VERSION = "1.1.0"
 CONTENT_TOP, CONTENT_BOTTOM, CONTENT_W, GAP = 104, 1030, 760, 14
 
 CSS = r"""
@@ -226,35 +227,75 @@ def render(spec: dict[str, Any]) -> str:
     )
 
 
+def starter_spec(topic: str) -> dict[str, Any]:
+    topic = topic.strip() or "My"
+    return {
+        "set_title": f"{topic} Planner - Full Page Canva",
+        "footer_label": f"Simplify to Glorify | {topic} Planner",
+        "pages": [
+            {
+                "label": "Daily focus",
+                "concept": "Choose one realistic priority",
+                "title": f"My {topic} Focus",
+                "subtitle": "A calm place to notice what matters and choose one next step.",
+                "theme": "#b2c6b1",
+                "blocks": [
+                    {"x": 28, "y": 104, "w": 760, "h": 260, "title": "What matters today", "color": "sage", "content": {"type": "lines", "prompt": "A few words are enough.", "rows": 7}},
+                    {"x": 28, "y": 378, "w": 374, "h": 300, "title": "Helpful choices", "color": "blue", "content": {"type": "checklist", "items": ["One essential step", "One supportive step"], "blank_rows": 7}},
+                    {"x": 414, "y": 378, "w": 374, "h": 300, "title": "What may help", "color": "lav", "content": {"type": "lines", "rows": 9}},
+                    {"x": 28, "y": 692, "w": 760, "h": 338, "title": "One feasible next step", "color": "warm", "content": {"type": "lines", "prompt": "If it helps: If ___ happens, then I will ___.", "rows": 11}}
+                ]
+            }
+        ]
+    }
+
+
 def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("spec", type=Path, help="Planner JSON specification")
-    parser.add_argument("output", type=Path, help="Output HTML path")
+    parser = argparse.ArgumentParser(description="Generate and validate Canva-importable planner pages.")
+    parser.add_argument("spec", nargs="?", type=Path, help="Planner JSON specification")
+    parser.add_argument("output", nargs="?", type=Path, help="Output HTML path")
     parser.add_argument("--validate-only", action="store_true", help="Validate without writing HTML")
+    parser.add_argument("--init", dest="init_path", type=Path, metavar="PATH", help="Create a starter JSON specification")
+    parser.add_argument("--topic", default="My", help="Topic used with --init (default: My)")
+    parser.add_argument("--version", action="version", version=f"%(prog)s {VERSION}")
     args = parser.parse_args()
 
+    if args.init_path:
+        if args.spec or args.output or args.validate_only:
+            parser.error("--init cannot be combined with spec/output arguments or --validate-only")
+        args.init_path.write_text(json.dumps(starter_spec(args.topic), indent=2) + "\n", encoding="utf-8")
+        print(f"Created starter specification: {args.init_path}")
+        return 0
+
+    if not args.spec or not args.output:
+        parser.error("spec and output are required unless --init or --version is used")
+
     try:
-        spec = json.loads(args.spec.read_text(encoding="utf-8"))
+        spec = json.loads(args.spec.read_text(encoding="utf-8-sig"))
     except Exception as exc:
-        print(f"Could not read spec: {exc}", file=sys.stderr)
+        print(f"Could not read specification: {exc}", file=sys.stderr)
         return 2
 
     warnings = validate(spec)
     for warning in warnings:
         print(warning, file=sys.stderr)
-    if any(w.startswith("ERROR") for w in warnings):
+    if any(warning.startswith("ERROR") for warning in warnings):
+        print(f"Validation failed with {len(warnings)} finding(s).", file=sys.stderr)
         return 2
+
+    page_count = len(spec.get("pages", []))
+    block_count = sum(len(page.get("blocks", [])) for page in spec.get("pages", []))
     if args.validate_only:
-        return 1 if warnings else 0
+        if warnings:
+            print(f"Validation completed with {len(warnings)} warning(s): {page_count} page(s), {block_count} block(s).")
+            return 1
+        print(f"Validation passed: {page_count} page(s), {block_count} block(s).")
+        return 0
 
     args.output.write_text(render(spec), encoding="utf-8")
-    print(args.output)
+    print(f"Generated {page_count} page(s) with {block_count} block(s): {args.output}")
     return 0
 
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
-
-
-
