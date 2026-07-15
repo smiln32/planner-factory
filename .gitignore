@@ -1,8 +1,30 @@
-﻿__pycache__/
+﻿# Python
+__pycache__/
 *.py[cod]
 .venv/
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Project-local runtimes and caches
 .uv-cache/
 .uv-python/
-.pytest_cache/
+
+# Generated planner output
 examples/ci-output.html
 *.generated.html
+output/
+dist/
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
