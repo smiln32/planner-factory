@@ -6,7 +6,7 @@ Upload this folder, then paste the request below with your topic and desired pag
 
 Create a complete, editable Canva planner set about: **[TOPIC]**.
 
-Read `CONTENT_GUIDE.md`, then `DESIGN_STANDARD.md`, then inspect the approved reference HTML. Treat those files as requirements.
+Read `CONTENT_GUIDE.md`, then `DESIGN_STANDARD.md`, then inspect the approved reference HTML in `examples/depression/approved-reference.html`. Treat those files as requirements.
 
 Before writing the JSON, make a private page blueprint. Give every page one sharply defined `concept`, one intended benefit, one mental task, one response form, and one composition. Remove semantic duplicates. Do not show me generic approval checkpoints; make sound decisions and complete the set.
 
