@@ -1,8 +1,12 @@
 ﻿# Canva Planner Factory
 
+[![Validate planner factory](https://github.com/smiln32/planner-pages-factory/actions/workflows/validate.yml/badge.svg)](https://github.com/smiln32/planner-pages-factory/actions/workflows/validate.yml) [![Release](https://img.shields.io/badge/release-v1.0.0-6f8f72)](https://github.com/smiln32/planner-pages-factory/releases/tag/v1.0.0) [![License: MIT](https://img.shields.io/badge/license-MIT-7b9fb3.svg)](LICENSE)
+
 Canva Planner Factory is a specification-driven toolkit for creating polished, printable planner pages for nearly any topic. It converts structured JSON into editable, Canva-importable HTML sized precisely for US Letter pages.
 
 The project combines a consistent visual system with guidance for writing supportive, useful, and non-repetitive prompts. Each planner page is designed around one clear concept, with response formats and layouts chosen to match its purpose.
+
+![Two generated planner pages showing the factory''s spacing, typography, checklists, and writing areas](assets/planner-preview.png)
 
 ## What it provides
 
@@ -65,7 +69,7 @@ A planner specification contains set-level information and a list of pages. Each
 }
 ```
 
-See [`planner_spec_template.json`](planner_spec_template.json) and the [`examples`](examples) directory for complete examples.
+See [`planner_spec_template.json`](planner_spec_template.json) and the [`examples/basic`](examples/basic) directory for complete examples.
 
 ## Supported content types
 
@@ -125,8 +129,11 @@ planner_spec_template.json     Reusable planner specification template
 CONTENT_GUIDE.md               Prompt, safety, and uniqueness guidance
 DESIGN_STANDARD.md             Typography, spacing, color, and layout rules
 NEW_CHAT_STARTER_PROMPT.md      Reusable AI-assisted creation workflow
-examples/                      Small example specifications and outputs
-reference/                     Approved visual references
+examples/basic/                Minimal two-page example and generated output
+examples/depression/           Full specification, output, and approved reference
+examples/adhd/                 ADHD planner PDF example
+assets/                        README preview images
+prompts/                       Reusable planner ideation prompts
 ```
 
 ## Contributing
