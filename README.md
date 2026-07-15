@@ -38,6 +38,10 @@ Show the installed version:
 python planner_factory.py --version
 ```
 
+## Complete guide
+
+For a plain-language explanation of the system, requirements, setup, commands, validation, and Canva workflow, read [`HOW_IT_WORKS.md`](HOW_IT_WORKS.md).
+
 ## Quick start
 
 1. Clone or download this repository.
@@ -138,6 +142,7 @@ Canva import behavior may change over time, so always test the actual imported d
 ```text
 planner_factory.py             HTML generator and validator
 planner_spec_template.json     Reusable planner specification template
+HOW_IT_WORKS.md                Plain-language setup and operating guide
 SPECIFICATION.md               Complete JSON field and content-type reference
 CONTENT_GUIDE.md               Prompt, safety, and uniqueness guidance
 DESIGN_STANDARD.md             Typography, spacing, color, and layout rules
