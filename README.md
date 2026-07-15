@@ -135,4 +135,4 @@ Contributions that improve validation, accessibility, Canva editability, documen
 
 ## License
 
-This project is available under the [MIT License](LICENSE).
+This project is available under the [MIT License](LICENSE). See [Rights and Attribution](RIGHTS_AND_ATTRIBUTION.md) for the scope of original project assets and third-party trademark notices.
