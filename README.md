@@ -36,7 +36,7 @@ python planner_studio.py
 
 The studio opens at `http://127.0.0.1:8765`. Drafts are saved in that browser on your computer. Nothing is uploaded to a service or account. Use **Download editable project** to keep a portable JSON backup and **Download finished HTML** for Canva-ready output.
 
-Studio features include blueprint recommendations, page sequencing, full-page preview, snap-to-grid movement by pointer or keyboard, undo and redo, local draft saving, production notes, validation, and HTML/JSON export.
+Studio features include blueprint recommendations, page sequencing, a full-page preview, adjustable side panels, snap-to-grid movement by pointer or keyboard, undo and redo, local draft saving, production notes, validation, and HTML/JSON export.
 
 Create a topic-aware starter specification:
 

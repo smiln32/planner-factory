@@ -89,6 +89,9 @@ class PlannerFactoryTests(unittest.TestCase):
         self.assertIn('href="styles.css?', html)
         self.assertIn("function editLive", script)
         self.assertIn("function syncInspector", script)
+        self.assertIn("function bindPanelSplitter", script)
+        self.assertIn('id="leftSplitter"', html)
+        self.assertIn('id="rightSplitter"', html)
         self.assertIn("@media(max-width:680px)", styles)
         for text in (html, script, styles):
             self.assertNotIn("\ufffd", text)
