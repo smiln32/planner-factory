@@ -34,6 +34,34 @@ class PlannerFactoryTests(unittest.TestCase):
         findings = planner_factory.validate(spec)
         self.assertTrue(any("overlap" in finding for finding in findings))
 
+    def test_invalid_geometry_is_an_error(self):
+        cases = [
+            {"x": 28, "y": 104, "w": 179, "h": 200},
+            {"x": 27, "y": 104, "w": 760, "h": 200},
+            {"x": 28, "y": 103, "w": 760, "h": 200},
+            {"x": 28, "y": 104, "w": 760, "h": 927},
+            {"x": "bad", "y": 104, "w": 760, "h": 200},
+        ]
+        for geometry in cases:
+            with self.subTest(geometry=geometry):
+                spec = self.load_example()
+                spec["pages"][0]["blocks"] = [{**geometry, "content": {"type": "lines"}}]
+                self.assertTrue(any(finding.startswith("ERROR:") for finding in planner_factory.validate(spec)))
+
+    def test_titles_and_prompts_are_checked_independently(self):
+        spec = self.load_example()
+        first, second = spec["pages"][0]["blocks"][:2]
+        first["title"] = second["title"] = "Repeated section"
+        first["content"]["prompt"] = "First unique prompt"
+        second["content"]["prompt"] = "Second unique prompt"
+        findings = planner_factory.validate(spec)
+        self.assertTrue(any("repeats section title" in finding for finding in findings))
+
+        second["title"] = "Unique section"
+        second["content"]["prompt"] = "First unique prompt"
+        findings = planner_factory.validate(spec)
+        self.assertTrue(any("repeats prompt" in finding for finding in findings))
+
     def test_rendered_output_is_substantial_html(self):
         html = planner_factory.render(self.load_example())
         self.assertTrue(html.startswith("<!doctype html>"))

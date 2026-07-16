@@ -42,13 +42,13 @@ Every block uses absolute pixel geometry on the 816 × 1056 canvas.
 |---|---:|---|---|
 | `x` | Yes | integer | Distance from the left edge. Standard outer edge: `28`. |
 | `y` | Yes | integer | Distance from the top. Content normally begins at `104`. |
-| `w` | Yes | integer | Width. Standard widths: `760`, `374`, or about `243`. |
+| `w` | Yes | integer | Width. Standard widths: `760`, `373`, or `244`. |
 | `h` | Yes | integer | Height. The bottom must not exceed `1030`. |
 | `title` | No | string | Section heading inside the colored header row. |
 | `color` | No | string | `sage`, `lav`, `blue`, `warm`, `rose`, or `ivory`. |
 | `content` | Yes | object | Response-area definition selected by `type`. |
 
-Use 14 px gaps between neighboring blocks. Blocks must not overlap or enter header/footer zones.
+Use 14 px gaps between neighboring blocks. Blocks must be at least 180 × 92 px, stay within x=28–788 and y=104–1030, and must not overlap.
 
 ## Shared content fields
 
@@ -128,7 +128,7 @@ HTML is inserted without escaping. Use only trusted specifications. The author i
 
 ## Validation
 
-Checks include page/block presence, numeric geometry, bounds, full-page use, overlaps, repeated concepts, and repeated wording.
+Checks include page/block presence, numeric geometry, safe-area bounds, minimum block size, full-page use, overlaps, repeated concepts, repeated section titles, and repeated prompts.
 
 | Exit code | Meaning |
 |---:|---|

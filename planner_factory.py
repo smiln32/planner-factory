@@ -27,6 +27,10 @@ SAFE_BOTTOM = 1030
 FILL_TARGET = 980
 VERSION = "1.1.0"
 CONTENT_TOP, CONTENT_BOTTOM, CONTENT_W, GAP = 104, 1030, 760, 14
+CONTENT_LEFT = 28
+CONTENT_RIGHT = CONTENT_LEFT + CONTENT_W
+MIN_BLOCK_W = 180
+MIN_BLOCK_H = 92
 
 CSS = r"""
 *{box-sizing:border-box}
@@ -150,18 +154,31 @@ def render_box(block: dict[str, Any]) -> str:
     )
 
 
+def normalize_phrase(value: Any) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", str(value).lower()).strip()
+
+
 def validate_uniqueness_and_collisions(spec: dict[str, Any]) -> list[str]:
-    findings, concepts, phrases = [], {}, {}
+    findings, concepts, section_titles, prompts = [], {}, {}, {}
     for page_no, page in enumerate(spec.get("pages", []), 1):
-        concept = re.sub(r"[^a-z0-9]+", " ", str(page.get("concept", page.get("title", ""))).lower()).strip()
+        concept = normalize_phrase(page.get("concept", page.get("title", "")))
         if concept in concepts: findings.append(f"ERROR: Pages {concepts[concept]} and {page_no} repeat the same concept.")
         elif concept: concepts[concept] = page_no
         blocks = page.get("blocks", [])
         for block_no, block in enumerate(blocks, 1):
-            phrase = block.get("content", {}).get("prompt") or block.get("title", "")
-            phrase = re.sub(r"[^a-z0-9]+", " ", str(phrase).lower()).strip()
-            if len(phrase) >= 12 and phrase in phrases: findings.append(f"Page {page_no}, block {block_no}: repeats wording from page {phrases[phrase][0]}, block {phrases[phrase][1]}.")
-            elif phrase: phrases[phrase] = (page_no, block_no)
+            for label, value, seen in (
+                ("section title", block.get("title", ""), section_titles),
+                ("prompt", block.get("content", {}).get("prompt", ""), prompts),
+            ):
+                phrase = normalize_phrase(value)
+                if phrase and phrase in seen:
+                    first_page, first_block = seen[phrase]
+                    findings.append(
+                        f"Page {page_no}, block {block_no}: repeats {label} from "
+                        f"page {first_page}, block {first_block}."
+                    )
+                elif phrase:
+                    seen[phrase] = (page_no, block_no)
         for a, first in enumerate(blocks):
             for b, second in enumerate(blocks[a + 1:], a + 2):
                 if all(k in first and k in second for k in ("x", "y", "w", "h")) and first["x"] < second["x"] + second["w"] and first["x"] + first["w"] > second["x"] and first["y"] < second["y"] + second["h"] and first["y"] + first["h"] > second["y"]:
@@ -184,14 +201,16 @@ def validate(spec: dict[str, Any]) -> list[str]:
             try:
                 x, y, w, h = (int(block[k]) for k in ("x", "y", "w", "h"))
             except (KeyError, TypeError, ValueError):
-                warnings.append(f"Page {idx}, block {n}: invalid x/y/w/h.")
+                warnings.append(f"ERROR: Page {idx}, block {n}: invalid x/y/w/h.")
                 continue
-            if x < 0 or y < 0 or x + w > PAGE_W or y + h > PAGE_H:
-                warnings.append(f"Page {idx}, block {n}: outside the 816 x 1056 page.")
-            if y < 100:
-                warnings.append(f"Page {idx}, block {n}: begins too close to the header.")
+            if w < MIN_BLOCK_W or h < MIN_BLOCK_H:
+                warnings.append(f"ERROR: Page {idx}, block {n}: block must be at least {MIN_BLOCK_W} x {MIN_BLOCK_H}px.")
+            if x < CONTENT_LEFT or x + w > CONTENT_RIGHT:
+                warnings.append(f"ERROR: Page {idx}, block {n}: outside the horizontal safe area ({CONTENT_LEFT}-{CONTENT_RIGHT}px).")
+            if y < CONTENT_TOP:
+                warnings.append(f"ERROR: Page {idx}, block {n}: begins above the content area ({CONTENT_TOP}px).")
             if y + h > SAFE_BOTTOM:
-                warnings.append(f"Page {idx}, block {n}: extends below the safe content bottom ({SAFE_BOTTOM}px).")
+                warnings.append(f"ERROR: Page {idx}, block {n}: extends below the safe content bottom ({SAFE_BOTTOM}px).")
             bottoms.append(y + h)
         if bottoms and max(bottoms) < FILL_TARGET:
             warnings.append(
@@ -241,8 +260,8 @@ def starter_spec(topic: str) -> dict[str, Any]:
                 "theme": "#b2c6b1",
                 "blocks": [
                     {"x": 28, "y": 104, "w": 760, "h": 260, "title": "What matters today", "color": "sage", "content": {"type": "lines", "prompt": "A few words are enough.", "rows": 7}},
-                    {"x": 28, "y": 378, "w": 374, "h": 300, "title": "Helpful choices", "color": "blue", "content": {"type": "checklist", "items": ["One essential step", "One supportive step"], "blank_rows": 7}},
-                    {"x": 414, "y": 378, "w": 374, "h": 300, "title": "What may help", "color": "lav", "content": {"type": "lines", "rows": 9}},
+                    {"x": 28, "y": 378, "w": 373, "h": 300, "title": "Helpful choices", "color": "blue", "content": {"type": "checklist", "items": ["One essential step", "One supportive step"], "blank_rows": 7}},
+                    {"x": 415, "y": 378, "w": 373, "h": 300, "title": "What may help", "color": "lav", "content": {"type": "lines", "rows": 9}},
                     {"x": 28, "y": 692, "w": 760, "h": 338, "title": "One feasible next step", "color": "warm", "content": {"type": "lines", "prompt": "If it helps: If ___ happens, then I will ___.", "rows": 11}}
                 ]
             }

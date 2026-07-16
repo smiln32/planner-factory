@@ -1,6 +1,6 @@
 ﻿# Canva Planner Factory
 
-[![Validate planner factory](https://github.com/smiln32/planner-pages-factory/actions/workflows/validate.yml/badge.svg)](https://github.com/smiln32/planner-pages-factory/actions/workflows/validate.yml) [![Release](https://img.shields.io/badge/release-v1.0.0-6f8f72)](https://github.com/smiln32/planner-pages-factory/releases/tag/v1.0.0) [![License: MIT](https://img.shields.io/badge/license-MIT-7b9fb3.svg)](LICENSE)
+[![Validate planner factory](https://github.com/smiln32/planner-factory/actions/workflows/validate.yml/badge.svg)](https://github.com/smiln32/planner-factory/actions/workflows/validate.yml) [![Release](https://img.shields.io/badge/release-v1.1.0-6f8f72)](https://github.com/smiln32/planner-factory/releases/tag/v1.1.0) [![License: MIT](https://img.shields.io/badge/license-MIT-7b9fb3.svg)](LICENSE)
 
 Canva Planner Factory is a specification-driven toolkit for creating polished, printable planner pages for nearly any topic. It converts structured JSON into editable, Canva-importable HTML sized precisely for US Letter pages.
 

@@ -1,4 +1,4 @@
-﻿{
+{
     "set_title":  "TOPIC Planner - Full Page Canva",
     "footer_label":  "Simplify to Glorify | TOPIC Planner",
     "pages":  [
@@ -29,7 +29,7 @@
                                      {
                                          "x":  28,
                                          "y":  268,
-                                         "w":  374,
+                                         "w":  373,
                                          "h":  300,
                                          "title":  "Checklist section",
                                          "color":  "blue",
@@ -43,9 +43,9 @@
                                                      }
                                      },
                                      {
-                                         "x":  414,
+                                         "x":  415,
                                          "y":  268,
-                                         "w":  374,
+                                         "w":  373,
                                          "h":  300,
                                          "title":  "Writing section",
                                          "color":  "lav",
