@@ -81,6 +81,23 @@ class PlannerFactoryTests(unittest.TestCase):
         self.assertRegex(planner_factory.VERSION, r"^\d+\.\d+\.\d+$")
 
 
+    def test_studio_assets_are_linked_and_encoding_is_clean(self):
+        html = (ROOT / "studio" / "index.html").read_text(encoding="utf-8")
+        script = (ROOT / "studio" / "app.js").read_text(encoding="utf-8")
+        styles = (ROOT / "studio" / "styles.css").read_text(encoding="utf-8")
+        self.assertIn('src="app.js?', html)
+        self.assertIn('href="styles.css?', html)
+        self.assertIn("function editLive", script)
+        self.assertIn("function syncInspector", script)
+        self.assertIn("@media(max-width:680px)", styles)
+        for text in (html, script, styles):
+            self.assertNotIn("\ufffd", text)
+            self.assertNotIn("\u00c3", text)
+            self.assertNotIn("\u00e2\u20ac", text)
+
+    def test_rendered_titles_are_clamped_to_the_header(self):
+        html = planner_factory.render(self.load_example())
+        self.assertIn("-webkit-line-clamp:2", html)
     def test_studio_health_endpoint(self):
         server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
         thread = threading.Thread(target=server.serve_forever, daemon=True)
@@ -90,6 +107,7 @@ class PlannerFactoryTests(unittest.TestCase):
                 payload = json.loads(response.read())
             self.assertTrue(payload["ok"])
             self.assertEqual(payload["version"], planner_factory.VERSION)
+            self.assertEqual(response.headers["Cache-Control"], "no-store, max-age=0")
         finally:
             server.shutdown()
             server.server_close()

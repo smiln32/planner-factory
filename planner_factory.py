@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """Generate full-page, Canva-importable US Letter planner HTML from JSON.
 
 The output uses ordinary HTML text, divs, borders, checkboxes, lines, and tables
@@ -39,8 +39,8 @@ html,body{margin:0;padding:0;background:#ececec;font-family:"Aptos","Helvetica N
 .page{position:relative;width:816px;height:1056px;margin:0 auto;background:#fff;page-break-after:always;overflow:hidden}
 .page:last-child{page-break-after:auto}
 .header{position:absolute;left:28px;top:24px;width:760px;height:66px;border-radius:10px;background:var(--theme);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 16px}
-.title{font-family:Georgia,"Times New Roman",serif;font-size:23px;font-weight:700;line-height:1.05;letter-spacing:-.25px;margin:0 0 5px;text-wrap:balance}
-.subtitle{font-size:10px;line-height:1.1;color:#4d4d4d;margin:0}
+.title{max-width:100%;font-family:Georgia,"Times New Roman",serif;font-size:23px;font-weight:700;line-height:1.05;letter-spacing:-.25px;margin:0 0 5px;text-wrap:balance;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.subtitle{max-width:100%;font-size:10px;line-height:1.1;color:#4d4d4d;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
 .footer{position:absolute;left:28px;bottom:10px;width:760px;height:16px;display:flex;justify-content:space-between;align-items:center;font-size:8px;color:#8c8c8c}
 .box{position:absolute;border:1.2px solid #5c5c5c;border-radius:10px;background:#fff;overflow:hidden}
 .head{height:32px;display:flex;align-items:center;padding:0 12px;font-size:10.5px;font-weight:700;border-bottom:1.2px solid #5c5c5c;letter-spacing:.15px}
