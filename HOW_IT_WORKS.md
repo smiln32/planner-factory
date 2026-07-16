@@ -70,11 +70,11 @@ The generator uses only the Python standard library. No third-party Python packa
 Download the repository as a ZIP from GitHub and extract it, or clone it with Git:
 
 ```bash
-git clone https://github.com/smiln32/planner-pages-factory.git
-cd planner-pages-factory
+git clone https://github.com/smiln32/planner-factory.git
+cd planner-factory
 ```
 
-Because the repository is private, cloning requires GitHub access to the repository.
+The repository is public, so no GitHub sign-in is required to clone it.
 
 ## Confirm Python is available
 
