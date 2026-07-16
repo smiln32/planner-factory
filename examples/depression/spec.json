@@ -283,7 +283,7 @@
         {
           "x": 28,
           "y": 104,
-          "w": 374,
+          "w": 373,
           "h": 258,
           "title": "What my body needs",
           "color": "sage",
@@ -293,9 +293,9 @@
           }
         },
         {
-          "x": 414,
+          "x": 415,
           "y": 104,
-          "w": 374,
+          "w": 373,
           "h": 258,
           "title": "What my mind needs",
           "color": "blue",
@@ -307,7 +307,7 @@
         {
           "x": 28,
           "y": 376,
-          "w": 374,
+          "w": 373,
           "h": 258,
           "title": "What my space needs",
           "color": "warm",
@@ -317,9 +317,9 @@
           }
         },
         {
-          "x": 414,
+          "x": 415,
           "y": 376,
-          "w": 374,
+          "w": 373,
           "h": 258,
           "title": "Easy comfort options",
           "color": "lav",
@@ -331,7 +331,7 @@
         {
           "x": 28,
           "y": 648,
-          "w": 374,
+          "w": 373,
           "h": 192,
           "title": "What feels too hard right now",
           "color": "rose",
@@ -341,9 +341,9 @@
           }
         },
         {
-          "x": 414,
+          "x": 415,
           "y": 648,
-          "w": 374,
+          "w": 373,
           "h": 192,
           "title": "One doable act of care",
           "color": "sage",
@@ -387,7 +387,7 @@
         {
           "x": 28,
           "y": 498,
-          "w": 374,
+          "w": 373,
           "h": 170,
           "title": "What triggered this?",
           "color": "warm",
@@ -397,9 +397,9 @@
           }
         },
         {
-          "x": 414,
+          "x": 415,
           "y": 498,
-          "w": 374,
+          "w": 373,
           "h": 170,
           "title": "What am I telling myself?",
           "color": "lav",
@@ -411,7 +411,7 @@
         {
           "x": 28,
           "y": 682,
-          "w": 374,
+          "w": 373,
           "h": 170,
           "title": "What do I need to hear instead?",
           "color": "blue",
@@ -421,9 +421,9 @@
           }
         },
         {
-          "x": 414,
+          "x": 415,
           "y": 682,
-          "w": 374,
+          "w": 373,
           "h": 170,
           "title": "What can I release for today?",
           "color": "sage",
@@ -547,7 +547,7 @@
         {
           "x": 28,
           "y": 104,
-          "w": 374,
+          "w": 373,
           "h": 206,
           "title": "People I can text",
           "color": "sage",
@@ -557,9 +557,9 @@
           }
         },
         {
-          "x": 414,
+          "x": 415,
           "y": 104,
-          "w": 374,
+          "w": 373,
           "h": 206,
           "title": "People I can call",
           "color": "blue",
@@ -571,7 +571,7 @@
         {
           "x": 28,
           "y": 324,
-          "w": 374,
+          "w": 373,
           "h": 206,
           "title": "Safe places",
           "color": "lav",
@@ -581,9 +581,9 @@
           }
         },
         {
-          "x": 414,
+          "x": 415,
           "y": 324,
-          "w": 374,
+          "w": 373,
           "h": 206,
           "title": "Comfort activities",
           "color": "warm",
@@ -595,7 +595,7 @@
         {
           "x": 28,
           "y": 544,
-          "w": 374,
+          "w": 373,
           "h": 206,
           "title": "Professional supports",
           "color": "rose",
@@ -605,9 +605,9 @@
           }
         },
         {
-          "x": 414,
+          "x": 415,
           "y": 544,
-          "w": 374,
+          "w": 373,
           "h": 206,
           "title": "What to say when I do not know what to say",
           "color": "sage",
@@ -651,7 +651,7 @@
         {
           "x": 28,
           "y": 308,
-          "w": 374,
+          "w": 373,
           "h": 206,
           "title": "Encouraging words",
           "color": "warm",
@@ -661,9 +661,9 @@
           }
         },
         {
-          "x": 414,
+          "x": 415,
           "y": 308,
-          "w": 374,
+          "w": 373,
           "h": 206,
           "title": "Scriptures, affirmations, or reminders",
           "color": "lav",
@@ -675,7 +675,7 @@
         {
           "x": 28,
           "y": 528,
-          "w": 374,
+          "w": 373,
           "h": 206,
           "title": "Things that have helped before",
           "color": "blue",
@@ -685,9 +685,9 @@
           }
         },
         {
-          "x": 414,
+          "x": 415,
           "y": 528,
-          "w": 374,
+          "w": 373,
           "h": 206,
           "title": "Reasons to keep going today",
           "color": "rose",
@@ -755,7 +755,7 @@
         {
           "x": 28,
           "y": 536,
-          "w": 374,
+          "w": 373,
           "h": 180,
           "title": "What I need more of",
           "color": "lav",
@@ -765,9 +765,9 @@
           }
         },
         {
-          "x": 414,
+          "x": 415,
           "y": 536,
-          "w": 374,
+          "w": 373,
           "h": 180,
           "title": "What I need less of",
           "color": "warm",
