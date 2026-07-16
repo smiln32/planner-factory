@@ -1,9 +1,13 @@
-﻿import json
+import json
 import tempfile
 import unittest
+import threading
+import urllib.request
+from http.server import ThreadingHTTPServer
 from pathlib import Path
 
 import planner_factory
+from planner_studio import Handler
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -76,5 +80,18 @@ class PlannerFactoryTests(unittest.TestCase):
     def test_version_is_semantic(self):
         self.assertRegex(planner_factory.VERSION, r"^\d+\.\d+\.\d+$")
 
+
+    def test_studio_health_endpoint(self):
+        server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        try:
+            with urllib.request.urlopen(f"http://127.0.0.1:{server.server_port}/api/health") as response:
+                payload = json.loads(response.read())
+            self.assertTrue(payload["ok"])
+            self.assertEqual(payload["version"], planner_factory.VERSION)
+        finally:
+            server.shutdown()
+            server.server_close()
 if __name__ == "__main__":
     unittest.main()

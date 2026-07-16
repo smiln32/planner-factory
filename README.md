@@ -1,4 +1,4 @@
-﻿# Canva Planner Factory
+# Canva Planner Factory
 
 [![Validate planner factory](https://github.com/smiln32/planner-factory/actions/workflows/validate.yml/badge.svg)](https://github.com/smiln32/planner-factory/actions/workflows/validate.yml) [![Release](https://img.shields.io/badge/release-v1.1.0-6f8f72)](https://github.com/smiln32/planner-factory/releases/tag/v1.1.0) [![License: MIT](https://img.shields.io/badge/license-MIT-7b9fb3.svg)](LICENSE)
 
@@ -25,6 +25,18 @@ The project combines a consistent visual system with guidance for writing suppor
 - A Canva account if you want to import and edit the finished pages in Canva
 
 No third-party Python packages are required.
+
+## Planner Studio
+
+Planner Studio is the visual, local-first way to create a complete planner without editing JSON coordinates. It guides you from a customer brief to a recommended page blueprint, then lets you edit, reorder, validate, and export the planner in your browser.
+
+```bash
+python planner_studio.py
+```
+
+The studio opens at `http://127.0.0.1:8765`. Drafts are saved in that browser on your computer. Nothing is uploaded to a service or account. Use **Download editable project** to keep a portable JSON backup and **Download finished HTML** for Canva-ready output.
+
+Studio features include blueprint recommendations, page sequencing, full-page preview, snap-to-grid movement by pointer or keyboard, undo and redo, local draft saving, production notes, validation, and HTML/JSON export.
 
 Create a topic-aware starter specification:
 
