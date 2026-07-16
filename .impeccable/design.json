@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-16T13:30:00-05:00",
+  "title": "Design System: Planner Studio",
+  "extensions": {
+    "colorMeta": {
+      "ink": {"role":"neutral","displayName":"Working Ink","canonical":"#343a38","tonalRamp":["#141716","#242826","#343a38","#505753","#6e7772","#929b96","#bbc1be","#e8eae9"]},
+      "sage": {"role":"primary","displayName":"Studio Sage","canonical":"#b2c6b1","tonalRamp":["#1c291c","#344634","#4d654d","#69846a","#88a489","#b2c6b1","#d5e1d4","#f1f6f1"]},
+      "lavender": {"role":"secondary","displayName":"Proof Lavender","canonical":"#c6b5c8","tonalRamp":["#2a202c","#49394c","#69536d","#896f8d","#aa8eae","#c6b5c8","#e1d7e3","#f5f0f6"]},
+      "slate": {"role":"secondary","displayName":"Layout Slate","canonical":"#7b9fb3","tonalRamp":["#17252d","#294250","#3d6072","#527f95","#6d9db4","#93b8ca","#bed5df","#edf4f7"]},
+      "blush": {"role":"tertiary","displayName":"Review Blush","canonical":"#e6d7d3","tonalRamp":["#302321","#51403c","#735f59","#967f78","#baa29b","#d7c4bf","#eadfdb","#faf5f3"]}
+    },
+    "typographyMeta": {
+      "display": {"displayName":"Planner Display","purpose":"Printable planner-page titles only."},
+      "body": {"displayName":"Working Body","purpose":"Application copy and controls."},
+      "title": {"displayName":"Panel Title","purpose":"Workspace and editor hierarchy."},
+      "label": {"displayName":"Control Label","purpose":"Persistent field labels and tool names."}
+    },
+    "shadows": [],
+    "motion": [
+      {"name":"state","value":"180ms cubic-bezier(0.22, 1, 0.36, 1)","purpose":"Hover, focus, selection, and validation state changes."},
+      {"name":"panel","value":"220ms cubic-bezier(0.22, 1, 0.36, 1)","purpose":"Responsive editor panel transitions without choreography."}
+    ],
+    "breakpoints": [
+      {"name":"compact","value":"720px"},
+      {"name":"workspace","value":"1080px"},
+      {"name":"wide","value":"1440px"}
+    ]
+  },
+  "components": [
+    {
+      "name":"Primary Button","kind":"button","refersTo":"button-primary","description":"Commits the next meaningful creator action.",
+      "html":"<button class=\"ds-btn-primary\">Build page plan</button>",
+      "css":".ds-btn-primary{background:#343a38;color:#fff;border:0;border-radius:8px;padding:10px 16px;font:700 14px/1.3 Aptos,Arial,sans-serif;transition:background 180ms cubic-bezier(.22,1,.36,1)}.ds-btn-primary:hover{background:#242826}.ds-btn-primary:focus-visible{outline:3px solid #7b9fb3;outline-offset:2px}.ds-btn-primary:active{transform:translateY(1px)}"
+    },
+    {
+      "name":"Secondary Button","kind":"button","refersTo":"button-secondary","description":"Supports reversible or secondary actions.",
+      "html":"<button class=\"ds-btn-secondary\">Preview set</button>",
+      "css":".ds-btn-secondary{background:#fff;color:#343a38;border:1px solid #606864;border-radius:8px;padding:10px 16px;font:700 14px/1.3 Aptos,Arial,sans-serif}.ds-btn-secondary:hover{background:#f5f5f5}.ds-btn-secondary:focus-visible{outline:3px solid #7b9fb3;outline-offset:2px}"
+    },
+    {
+      "name":"Labeled Field","kind":"input","refersTo":"input","description":"Collects planner and customer details with persistent labels.",
+      "html":"<label class=\"ds-field\"><span>Customer audience</span><input value=\"Busy caregivers\"></label>",
+      "css":".ds-field{display:grid;gap:6px;color:#343a38;font:700 14px/1.3 Aptos,Arial,sans-serif}.ds-field input{background:#fff;color:#343a38;border:1px solid #606864;border-radius:8px;padding:10px 12px;font:400 16px/1.4 Aptos,Arial,sans-serif}.ds-field input:focus-visible{outline:2px solid #7b9fb3;outline-offset:2px}"
+    },
+    {
+      "name":"Selected Pattern Chip","kind":"chip","description":"Marks a chosen page-pattern category.",
+      "html":"<button class=\"ds-chip\" aria-pressed=\"true\"><span aria-hidden=\"true\">✓</span> Weekly review</button>",
+      "css":".ds-chip{display:inline-flex;align-items:center;gap:7px;background:#dfe9df;color:#343a38;border:1px solid #606864;border-radius:8px;padding:7px 10px;font:700 14px/1.2 Aptos,Arial,sans-serif}.ds-chip:focus-visible{outline:3px solid #7b9fb3;outline-offset:2px}"
+    },
+    {
+      "name":"Planner Block","kind":"custom","refersTo":"planner-block","description":"A movable, validated content area inside the planner canvas.",
+      "html":"<section class=\"ds-block\"><header>Weekly reflection</header><div><strong>What helped this week?</strong><span></span><span></span><span></span></div></section>",
+      "css":".ds-block{width:360px;background:#fff;color:#343a38;border:1.2px solid #606864;border-radius:10px;overflow:hidden;font-family:Aptos,Arial,sans-serif}.ds-block header{background:#dfe9df;border-bottom:1.2px solid #606864;padding:9px 12px;font-size:14px;font-weight:700}.ds-block div{display:grid;gap:10px;padding:12px}.ds-block strong{font-size:13px}.ds-block span{display:block;height:18px;border-bottom:1px solid #aeb7b2}.ds-block:focus-within{outline:3px solid #7b9fb3;outline-offset:2px}"
+    }
+  ],
+  "narrative": {
+    "northStar":"The Working Atelier",
+    "overview":"Planner Studio is a professional work surface with the calm, material clarity of a well-run creative studio. The interface stays restrained so customer content and printable page previews remain visually dominant.",
+    "keyCharacteristics":["Restrained application chrome around a true-to-size planner preview.","Precise 14px layout rhythm carried from the page system into the editor.","Professional controls with creative color used for orientation and selection.","Flat, print-aware surfaces with strong borders and no decorative effects.","Immediate, accessible feedback for every edit and validation result."],
+    "rules":[
+      {"name":"The Orientation Rule","body":"Color groups and orients; it never fills space merely to make the interface feel creative.","section":"colors"},
+      {"name":"The Two-Family Rule","body":"Georgia belongs to planner artifacts; Aptos belongs to the product interface.","section":"typography"},
+      {"name":"The Flat Workshop Rule","body":"If a panel needs a wide soft shadow to feel separate, its hierarchy or boundary is wrong.","section":"elevation"}
+    ],
+    "dos":["Do keep the planner preview visually dominant and the application chrome restrained.","Do use 14px as the core layout rhythm and preserve exact printable safe areas.","Do pair every color-coded state with text, shape, or an icon."],
+    "donts":["Don't create generic AI-generator styling, interchangeable dashboard decoration, or unexplained automatic choices.","Don't let template-first experiences erase the creator's judgment.","Don't allow drag interactions to create overlap, off-page content, invalid gutters, or inaccessible pointer-only workflows."]
+  }
+}
