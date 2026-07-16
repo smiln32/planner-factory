@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """Run Planner Studio locally and connect it to planner_factory."""
 import argparse, json, webbrowser
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -8,6 +8,9 @@ ROOT=Path(__file__).resolve().parent
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self,*a,**kw): super().__init__(*a,directory=str(ROOT/'studio'),**kw)
     def log_message(self,*a): pass
+    def end_headers(self):
+        self.send_header('Cache-Control','no-store, max-age=0')
+        super().end_headers()
     def send_json(self,data,status=200):
         body=json.dumps(data).encode(); self.send_response(status); self.send_header('Content-Type','application/json'); self.send_header('Content-Length',str(len(body))); self.end_headers(); self.wfile.write(body)
     def do_GET(self):
